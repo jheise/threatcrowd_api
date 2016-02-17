@@ -52,11 +52,9 @@ class ThreatCrowd(object):
         if param in self.calls[path]:
             diff = current_time - self.calls[path][param]["time"]
             if diff < self.ttl:
-                print "returning value form memory"
                 return self.calls[path][param]["result"]
 
         # either there isnt a result or the ttl has expired, query from source
-        print "query for new result"
         result = _threatcrowd_query(path, {path:param})
         if param not in self.calls[path]:
             self.calls[path][param] = {}
