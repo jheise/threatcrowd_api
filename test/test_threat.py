@@ -1,11 +1,12 @@
 #!/usr/bin/env python
-from threatcrowd import *
+from ..threatcrowd import *
 import time
 
-print email_report("name@email.com")
+print email_report("william19770319@yahoo.com")
 print ip_report("4.2.2.1")
 print domain_report("google.com")
-print antivirus_report("X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*")
+print antivirus_report("Heur.Trojan.Hlux")
+print file_report("000c104c074b6a8d24ac362220f16080")
 
 tc = ThreatCrowd(ttl=5)
 print tc.ip_report("4.2.2.1")

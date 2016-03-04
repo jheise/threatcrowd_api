@@ -3,7 +3,7 @@ import json
 import time
 
 def _threatcrowd_query(path, params):
-    full_path = "http://www.threatcrowd.org/searchApi/v2/{0}/report/".format(path)
+    full_path = "https://www.threatcrowd.org/searchApi/v2/{0}/report/".format(path)
     data = requests.get(full_path, params=params).text
     return json.loads(data)
 
@@ -19,6 +19,9 @@ def domain_report(domain):
 def antivirus_report(antivirus):
     return _threatcrowd_query("antivirus", {"antivirus":antivirus})
 
+def file_report(filename):
+    return _threatcrowd_query("file", {"resource":filename})
+
 class ThreatCrowd(object):
     """
     Class to handle memozing calls
@@ -31,7 +34,8 @@ class ThreatCrowd(object):
             "email":{},
             "ip":{},
             "domain":{},
-            "antivirus":{}
+            "antivirus":{},
+            "file":{}
         }
 
     def email_report(self, address):
@@ -45,6 +49,9 @@ class ThreatCrowd(object):
 
     def antivirus_report(self, antivirus):
         return self.__process_call("antivirus", antivirus)
+
+    def file_report(self, filename):
+        return self.__process_call("resource", filename)
 
     def __process_call(self, path, param):
         current_time = time.time()
