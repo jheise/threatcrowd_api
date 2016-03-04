@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup( name="threatcrowd",
-       version='0.3',
+       version='0.4',
        py_modules=['threatcrowd'],
        requires=['requests(>=2.4.0)'],
        install_requires=['requests>=2.4.0'],
